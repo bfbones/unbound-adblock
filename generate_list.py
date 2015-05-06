@@ -18,8 +18,7 @@ adservers = open('adblocklist')
 # possible zone types are:
 #   deny refuse static transparent redirect nodefault
 
-sZonetype = 'redirect'
-sDestination = "A 127.0.0.1"
+sZonetype = 'static'
 
 ##
 # generate unbound config entry for each server
@@ -27,5 +26,5 @@ sDestination = "A 127.0.0.1"
 for sServer in adservers:
   sServer = sServer.replace('\n', '')
 
+# generate a empty static zone, so unbound answers with NXDOMAIN
   print('local-zone: "' + sServer + '" ' + sZonetype)
-  print('local-data: "' + sServer + ' ' + sDestination + '"')
